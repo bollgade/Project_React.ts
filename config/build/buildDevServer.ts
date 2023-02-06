@@ -9,5 +9,6 @@ export function buildDevServer(options: BuildOptions): DevServerConfiguration {
 				name: 'chrome',
 			},
 		},
+		historyApiFallback: true,
 	}
 }
