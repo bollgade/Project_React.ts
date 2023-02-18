@@ -1,10 +1,9 @@
 .button {
 	cursor: pointer;
+	color: var(--inverted-primary-color);
 }
 
 .clear {
-	padding: 0;
-	margin: 0;
 	border: none;
 	background: none;
 	outline: none;
