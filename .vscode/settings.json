@@ -12,4 +12,11 @@
 	"i18n-ally.sourceLanguage": "ru",
 	"i18n-ally.displayLanguage": "ru",
 	"i18n-ally.keystyle": "nested",
+	"stylelint.enable": true,
+	"css.validate": true,
+	"scss.validate": true,
+	"stylelint.validate": [
+		"css",
+		"scss"
+	],
 }
