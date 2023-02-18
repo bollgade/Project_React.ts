@@ -1,3 +1,3 @@
 export {
-	ThemeSwitcher
+  ThemeSwitcher,
 } from './ui/ThemeSwitcher';
