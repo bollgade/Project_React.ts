@@ -17,4 +17,11 @@
 	width: 100%;
 	display: flex;
 	justify-content: center;
+	flex-wrap: wrap;
+}
+
+.lang {
+	margin-top: 10px;
+	margin-left: 20px;
+	margin-right: 20px;
 }
