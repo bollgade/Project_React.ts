@@ -24,7 +24,10 @@ module.exports = {
   ],
   rules: {
     indent: ['error', 2, { ignoredNodes: ['ConditionalExpression'] }],
-    'react/jsx-filename-extension': [2, { extensions: ['.js', '.jsx', '.tsx'] }],
+    'react/jsx-filename-extension': [
+      2,
+      { extensions: ['.js', '.jsx', '.tsx'] },
+    ],
     'import/no-unresolved': 'off',
     'linebreak-style': ['error', 'windows'],
     'react/react-in-jsx-scope': 'off',
@@ -38,6 +41,7 @@ module.exports = {
     'import/no-extraneous-dependencies': 'warn',
     'no-underscore-dangle': 'off',
     'i18next/no-literal-string': ['error', { markupOnly: true }],
+    'max-len': ['error', { ignoreComments: true }],
   },
   globals: {
     __IS_DEV__: true,
