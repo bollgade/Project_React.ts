@@ -31,7 +31,7 @@ module.exports = {
     'import/no-unresolved': 'off',
     'linebreak-style': ['error', 'windows'],
     'react/react-in-jsx-scope': 'off',
-    'no-unused-vars': 'warn',
+    'no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
     'import/prefer-default-export': 'off',
     'react/require-default-props': 'off',
     'react/jsx-props-no-spreading': 'warn',
@@ -40,8 +40,13 @@ module.exports = {
     'import/extensions': 'off',
     'import/no-extraneous-dependencies': 'warn',
     'no-underscore-dangle': 'off',
-    'i18next/no-literal-string': ['error', { markupOnly: true }],
+    'i18next/no-literal-string': ['error', {
+      markupOnly: true, ignoreAttribute: ['to'],
+    }],
     'max-len': ['error', { ignoreComments: true }],
+    '@typescript-eslint/type-annotation-spacing': 'error',
+    'space-before-blocks': 'off',
+    '@typescript-eslint/space-before-blocks': 'error',
   },
   globals: {
     __IS_DEV__: true,
