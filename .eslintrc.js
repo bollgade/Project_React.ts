@@ -47,11 +47,22 @@ module.exports = {
     'import/extensions': 'off',
     'import/no-extraneous-dependencies': [
       'error',
-      { devDependencies: ['**/*.config.ts', 'config/**/*.ts'] },
+      {
+        devDependencies: [
+          '**/*.config.ts',
+          'config/**/*.ts',
+          '**/*.test.{ts,tsx}',
+          '**/tests/**/*.{ts,tsx}',
+        ],
+      },
     ],
     'no-underscore-dangle': 'off',
     'i18next/no-literal-string': ['error', {
-      markupOnly: true, ignoreAttribute: ['to'],
+      markupOnly: true,
+      ignoreAttribute: [
+        'to',
+        'data-testid',
+      ],
     }],
     'max-len': [
       'error',
@@ -67,5 +78,12 @@ module.exports = {
   globals: {
     __IS_DEV__: true,
   },
-
+  overrides: [
+    {
+      files: ['**/src/**/*.test.{ts,tsx}'],
+      rules: {
+        'i18next/no-literal-string': 'off',
+      },
+    },
+  ],
 };
