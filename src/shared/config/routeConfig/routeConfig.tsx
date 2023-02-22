@@ -24,5 +24,5 @@ export const RoutePath: Record<AppRoutes, RouteProps> = {
   },
 };
 
-export const routeConfig
-  : RouteProps[] = Object.values(RoutePath).map((val) => val);
+export const routeConfig:
+RouteProps[] = Object.values(RoutePath).map((val) => val);

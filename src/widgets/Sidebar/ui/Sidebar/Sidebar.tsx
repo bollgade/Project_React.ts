@@ -26,6 +26,8 @@ export const Sidebar: FC<SidebarProps> = (props) => {
         [className],
       )}
     >
+      {/*  //!while testing  */}
+      {/* eslint-disable-next-line i18next/no-literal-string */}
       <Button onClick={onToggle}>toggle</Button>
       <div className={cls.switchers}>
         <ThemeSwitcher />
