@@ -31,14 +31,24 @@ module.exports = {
     'import/no-unresolved': 'off',
     'linebreak-style': ['error', 'windows'],
     'react/react-in-jsx-scope': 'off',
-    'no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
+    'no-unused-vars': 'off',
+    '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
     'import/prefer-default-export': 'off',
     'react/require-default-props': 'off',
-    'react/jsx-props-no-spreading': 'warn',
+    'react/jsx-props-no-spreading': [
+      'warn',
+      {
+        exceptions: ['Link', 'button'],
+      },
+
+    ],
     'react/function-component-definition': 'off',
     'no-shadow': 'off',
     'import/extensions': 'off',
-    'import/no-extraneous-dependencies': 'warn',
+    'import/no-extraneous-dependencies': [
+      'error',
+      { devDependencies: ['**/*.config.ts', 'config/**/*.ts'] },
+    ],
     'no-underscore-dangle': 'off',
     'i18next/no-literal-string': ['error', {
       markupOnly: true, ignoreAttribute: ['to'],
