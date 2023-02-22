@@ -53,7 +53,13 @@ module.exports = {
     'i18next/no-literal-string': ['error', {
       markupOnly: true, ignoreAttribute: ['to'],
     }],
-    'max-len': ['error', { ignoreComments: true }],
+    'max-len': [
+      'error',
+      {
+        ignoreComments: true,
+        code: 100,
+      },
+    ],
     '@typescript-eslint/type-annotation-spacing': 'error',
     'space-before-blocks': 'off',
     '@typescript-eslint/space-before-blocks': 'error',
