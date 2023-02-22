@@ -18,8 +18,11 @@ export const Sidebar: FC<SidebarProps> = (props) => {
     setCollapsed((prev) => !prev);
   };
 
+  const testText = 'toggle';
+
   return (
     <div
+      data-testid="sidebar"
       className={classNames(
         cls.sidebar,
         { [cls.collapsed]: collapsed },
@@ -27,8 +30,12 @@ export const Sidebar: FC<SidebarProps> = (props) => {
       )}
     >
       {/*  //!while testing  */}
-      {/* eslint-disable-next-line i18next/no-literal-string */}
-      <Button onClick={onToggle}>toggle</Button>
+      <Button
+        data-testid="sidebar-toggle"
+        onClick={onToggle}
+      >
+        {testText}
+      </Button>
       <div className={cls.switchers}>
         <ThemeSwitcher />
         <LangSwitcher className={cls.lang} />
