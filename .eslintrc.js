@@ -50,9 +50,8 @@ module.exports = {
       {
         devDependencies: [
           '**/*.config.ts',
-          'config/**/*.ts',
-          '**/*.test.{ts,tsx}',
-          '**/tests/**/*.{ts,tsx}',
+          '**/*.{test,stories}.{ts,tsx}',
+          '**/{tests,stories,config}/**/*.{ts,tsx}',
         ],
       },
     ],
@@ -83,6 +82,12 @@ module.exports = {
       files: ['**/src/**/*.test.{ts,tsx}'],
       rules: {
         'i18next/no-literal-string': 'off',
+      },
+    },
+    {
+      files: ['**/*.stories.{ts,tsx}'],
+      rules: {
+        'react/jsx-props-no-spreading': 'off',
       },
     },
   ],
