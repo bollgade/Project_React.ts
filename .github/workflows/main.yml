@@ -24,12 +24,15 @@ jobs:
 
   linting:
     runs-on: windows-latest
+    strategy:
+      matrix:
+        node-version: [ 17.x ]
     steps:
       - uses: actions/checkout@v3
       - name: Staring Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ building.strategy.matrix.node-version }}
+          node-version: ${{ matrix.node-version }}
           cache: npm
       - name: install modules
         run: npm ci
@@ -40,12 +43,15 @@ jobs:
 
   testing:
     runs-on: windows-latest
+    strategy:
+      matrix:
+        node-version: [ 17.x ]
     steps:
       - uses: actions/checkout@v3
       - name: Staring Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ building.strategy.matrix.node-version }}
+          node-version: ${{ matrix.node-version }}
           cache: npm
       - name: install modules
         run: npm ci
