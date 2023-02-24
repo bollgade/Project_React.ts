@@ -6,7 +6,7 @@ on:
     branches: [ master ]
 jobs:
   building:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     strategy:
       matrix:
         node-version: [ 17.x ]
@@ -23,16 +23,13 @@ jobs:
         run: npm run build:prod
 
   linting:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [ 17.x ]
+    runs-on: windows-latest
     steps:
       - uses: actions/checkout@v3
       - name: Staring Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: ${{ jobs.building.strategy.matrix.node-version }}
           cache: npm
       - name: install modules
         run: npm ci
@@ -42,16 +39,13 @@ jobs:
         run: npm run lint:scss
 
   testing:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [ 17.x ]
+    runs-on: windows-latest
     steps:
       - uses: actions/checkout@v3
       - name: Staring Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: ${{ jobs.building.strategy.matrix.node-version }}
           cache: npm
       - name: install modules
         run: npm ci
