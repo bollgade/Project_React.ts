@@ -29,7 +29,7 @@ jobs:
       - name: Staring Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ jobs.building.strategy.matrix.node-version }}
+          node-version: ${{ building.strategy.matrix.node-version }}
           cache: npm
       - name: install modules
         run: npm ci
@@ -45,7 +45,7 @@ jobs:
       - name: Staring Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ jobs.building.strategy.matrix.node-version }}
+          node-version: ${{ building.strategy.matrix.node-version }}
           cache: npm
       - name: install modules
         run: npm ci
