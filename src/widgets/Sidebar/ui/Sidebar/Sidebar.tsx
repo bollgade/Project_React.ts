@@ -18,8 +18,6 @@ export const Sidebar: FC<SidebarProps> = (props) => {
     setCollapsed((prev) => !prev);
   };
 
-  const testText = 'toggle';
-
   return (
     <div
       data-testid="sidebar"
@@ -42,7 +40,10 @@ export const Sidebar: FC<SidebarProps> = (props) => {
       </Button>
       <div className={cls.switchers}>
         <ThemeSwitcher />
-        <LangSwitcher className={cls.lang} />
+        <LangSwitcher
+          short={collapsed}
+          className={cls.lang}
+        />
       </div>
     </div>
   );

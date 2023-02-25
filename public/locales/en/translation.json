@@ -1,11 +1,12 @@
 {
   "About": "About us",
   "Error message": "Something went wrong!",
+  "Language": "English",
+  "Lng": "En",
   "Loading": "Loading...",
   "Main": "Main",
   "Page not found": "Page not found",
   "update page": "Refresh the page",
   "Главная страница": "Main page",
-  "Перевод": "Translate",
-  "Язык": "English"
+  "Перевод": "Translate"
 }
