@@ -62,5 +62,5 @@ jobs:
         id: storybook
         if: always()
       - name: screenshot testing
-        if: ${{ failure() && steps.storybook.conclusion != 'failure'}}
+        if: ${{ always() && steps.storybook.conclusion != 'failure'}}
         run: npm run test:ui:ci
