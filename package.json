@@ -9,7 +9,7 @@
     "build:dev": "webpack --env mode=development",
     "analyze:prod": "npm run build:prod --env analyze=true",
     "analyze:dev": "npm run build:dev --env analyze=true",
-    "lint:ts": "eslint \"**/*.{ts,tsx}\"",
+    "lint:ts": "eslint \"**/*.{ts,tsx}\" --max-warnings=0",
     "lint:ts:fix": "eslint \"**/*.{ts,tsx}\" --fix",
     "lint:scss": "npx stylelint \"**/*.scss\"",
     "lint:scss:fix": "npx stylelint \"**/*.scss\" --fix",
