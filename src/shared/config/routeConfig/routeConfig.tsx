@@ -9,7 +9,7 @@ export enum AppRoutes {
   NOT_FOUND = 'not_found',
 }
 
-export const RoutePath: Record<AppRoutes, RouteProps> = {
+export const RouteElements: Record<AppRoutes, RouteProps> = {
   [AppRoutes.MAIN]: {
     path: '/',
     element: <MainPage />,
@@ -25,4 +25,4 @@ export const RoutePath: Record<AppRoutes, RouteProps> = {
 };
 
 export const routeConfig:
-RouteProps[] = Object.values(RoutePath).map((val) => val);
+RouteProps[] = Object.values(RouteElements).map((val) => val);
