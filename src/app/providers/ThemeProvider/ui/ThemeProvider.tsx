@@ -11,10 +11,13 @@ const defaultTheme = localStorage
 const ThemeProvider: FC = ({ children }) => {
   const [theme, setTheme] = useState<Theme>(defaultTheme);
 
-  const defaultProps = useMemo(() => ({
-    theme,
-    setTheme,
-  }), [theme]);
+  const defaultProps = useMemo(() => {
+    document.body.className = theme;
+    return {
+      theme,
+      setTheme,
+    };
+  }, [theme]);
 
   return (
     <ThemeContext.Provider value={defaultProps}>
