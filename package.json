@@ -18,6 +18,7 @@
     "test:ui:ok": "npx loki approve",
     "test:ui:ci": "npx loki --requireReference --reactUri file:./storybook-static",
     "prepare": "husky install",
+    "precommit": "npx lint-staged",
     "storybook": "start-storybook -p 6006 -c ./config/.storybook",
     "storybook:build": "build-storybook -c ./config/.storybook"
   },
@@ -109,7 +110,7 @@
   },
   "lint-staged": {
     "**/*.{ts,tsx}": [
-      "eslint --max-warnings=0"
+      "eslint --fix --max-warnings=0"
     ]
   }
 }
