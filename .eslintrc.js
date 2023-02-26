@@ -21,6 +21,7 @@ module.exports = {
     'react',
     '@typescript-eslint',
     'i18next',
+    'react-hooks',
   ],
   rules: {
     indent: ['error', 2, { ignoredNodes: ['ConditionalExpression'] }],
@@ -73,6 +74,10 @@ module.exports = {
     '@typescript-eslint/type-annotation-spacing': 'error',
     'space-before-blocks': 'off',
     '@typescript-eslint/space-before-blocks': 'error',
+    'jsx-a11y/no-static-element-interactions': 'off', // TODO: handle it later
+    'jsx-a11y/click-events-have-key-events': 'off', // TODO: handle it later
+    'react-hooks/rules-of-hooks': 'error', // Checks rules of Hooks
+    'react-hooks/exhaustive-deps': 'error', // Checks effect dependencies
   },
   globals: {
     __IS_DEV__: true,
@@ -87,6 +92,7 @@ module.exports = {
     {
       files: ['**/*.stories.{ts,tsx}'],
       rules: {
+        'max-len': 'off',
         'react/jsx-props-no-spreading': 'off',
       },
     },
