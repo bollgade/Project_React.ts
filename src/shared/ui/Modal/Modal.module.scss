@@ -1,0 +1,38 @@
+.modal {
+  position: fixed;
+  inset: 0;
+  opacity: 0;
+  z-index: -1;
+  pointer-events: none;
+  transition: 0.3s all;
+
+  .overlay {
+    width: 100%;
+    height: 100%;
+    background: var(--overlay-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .content {
+      padding: 20px;
+      border-radius: 12px;
+      background: var(--bg-color);
+      transform: scale(0.5);
+      transition: 0.3s all;
+      max-width: 60%;
+
+      // box-shadow: rgba(2, 37, 194, 0.555) 0px 7px 29px 0px; //TODO: add cool one, later
+    }
+  }
+
+  &.opened {
+    pointer-events: auto;
+    opacity: 1;
+    z-index: var(--modal-z-index);
+
+    .content {
+      transform: scale(1);
+    }
+  }
+}
