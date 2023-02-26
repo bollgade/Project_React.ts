@@ -1,18 +1,27 @@
-import { Theme, useTheme } from 'app/providers/ThemeProvider';
+import { useTheme } from 'app/providers/ThemeProvider';
 import { FC } from 'react';
-import DarkIcon from 'shared/assets/icons/theme-dark.svg';
-import LightIcon from 'shared/assets/icons/theme-light.svg';
+import ThemeIcon from 'shared/assets/icons/theme-icon.svg';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
+import cls from './ThemeSwitcher.module.scss';
+
+export enum IconTheme {
+  CLASSIC = 'icon',
+  INVERTED = 'iconInverted',
+}
 
 interface ThemeSwitcherProps {
   className?: string;
+  iconTheme?: IconTheme
 }
 
 export const ThemeSwitcher: FC<ThemeSwitcherProps> = (props) => {
-  const { className } = props;
+  const {
+    className,
+    iconTheme = IconTheme.CLASSIC,
+  } = props;
 
-  const { theme, toggleTheme } = useTheme();
+  const { toggleTheme } = useTheme();
 
   return (
     <Button
@@ -20,7 +29,7 @@ export const ThemeSwitcher: FC<ThemeSwitcherProps> = (props) => {
       className={classNames('', {}, [className])}
       onClick={toggleTheme}
     >
-      {theme === Theme.DARK ? <DarkIcon /> : <LightIcon />}
+      <ThemeIcon className={cls[iconTheme]} />
     </Button>
   );
 };

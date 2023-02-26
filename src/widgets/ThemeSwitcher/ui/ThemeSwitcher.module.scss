@@ -1,0 +1,7 @@
+.icon {
+  fill: var(--icon-color);
+
+  &-inverted {
+    fill: var(--inverted-icon-color);
+  }
+}
