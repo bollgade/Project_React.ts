@@ -2,6 +2,7 @@ import React, { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
+import { Input } from 'shared/ui/Input/Input';
 import cls from './LoginForm.module.scss';
 
 interface LoginFormProps {
@@ -17,14 +18,26 @@ export const LoginForm: FC<LoginFormProps> = (props) => {
     password: '',
   });
 
-  const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue({ ...inputValue, [e.target.name]: e.target.value });
+  type event = React.ChangeEvent<HTMLInputElement>;
+
+  const onInputChange = (value: string, e: event) => {
+    setInputValue({ ...inputValue, [e.target.name]: value });
   };
 
   return (
     <div className={classNames(cls.loginForm, {}, [className])}>
-      <input onChange={onInputChange} name="username" className={cls.input} />
-      <input onChange={onInputChange} name="password" type="password" className={cls.input} />
+      <Input
+        autoFocus
+        placeholder={t('Username')}
+        onChange={onInputChange}
+        name="username"
+      />
+      <Input
+        placeholder={t('Password')}
+        onChange={onInputChange}
+        name="password"
+        type="password"
+      />
       <Button
         className={cls.loginBtn}
         theme={ButtonTheme.BACKGROUND_INVERTED}
