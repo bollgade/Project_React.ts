@@ -39,7 +39,12 @@ module.exports = {
     'react/jsx-props-no-spreading': [
       'warn',
       {
-        exceptions: ['Link', 'button', 'OpenedModal'],
+        exceptions: [
+          'button',
+          'input',
+          'Link',
+          'OpenedModal',
+        ],
       },
 
     ],
@@ -61,6 +66,7 @@ module.exports = {
       markupOnly: true,
       ignoreAttribute: [
         'to',
+        'name',
         'data-testid',
       ],
     }],
@@ -79,6 +85,7 @@ module.exports = {
     'react-hooks/rules-of-hooks': 'error', // Checks rules of Hooks
     'react-hooks/exhaustive-deps': 'error', // Checks effect dependencies
     'no-param-reassign': ['error', { ignorePropertyModificationsForRegex: ['state'] }], // "props": true,
+    'jsx-a11y/label-has-associated-control': ['error', {}],
   },
   globals: {
     __IS_DEV__: true,
