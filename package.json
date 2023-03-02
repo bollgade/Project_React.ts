@@ -69,6 +69,7 @@
     "identity-obj-proxy": "^3.0.0",
     "jest": "^27.5.1",
     "json-server": "^0.17.0",
+    "lint-staged": "^12.5.0",
     "loki": "^0.31.0",
     "mini-css-extract-plugin": "^2.5.3",
     "react-refresh": "^0.14.0",
@@ -98,6 +99,14 @@
     "react-i18next": "^11.15.5",
     "react-redux": "^7.2.6",
     "react-router-dom": "^6.2.1"
+  },
+  "lint-staged": {
+    "**/*.{ts,tsx}": [
+      "eslint --fix --max-warnings=0"
+    ],
+    "**/*.{css,scss}":[
+      "stylelint --fix"
+    ]
   },
   "loki": {
     "configurations": {
