@@ -4,6 +4,16 @@
   padding: 4px 15px;
 }
 
+button:disabled {
+  transition: all 1s;
+  opacity: 0.5;
+}
+
+button:enabled {
+  transition: all 0.5s;
+  opacity: 1;
+}
+
 .clear,
 %clear {
   border: none;
