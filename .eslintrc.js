@@ -22,6 +22,7 @@ module.exports = {
     '@typescript-eslint',
     'i18next',
     'react-hooks',
+    'unused-imports',
   ],
   rules: {
     indent: ['error', 2, { ignoredNodes: ['ConditionalExpression'] }],
@@ -32,8 +33,6 @@ module.exports = {
     'import/no-unresolved': 'off',
     'linebreak-style': ['error', 'windows'],
     'react/react-in-jsx-scope': 'off',
-    'no-unused-vars': 'off',
-    '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
     'import/prefer-default-export': 'off',
     'react/require-default-props': 'off',
     'react/jsx-props-no-spreading': [
@@ -86,6 +85,14 @@ module.exports = {
     'react-hooks/exhaustive-deps': 'error', // Checks effect dependencies
     'no-param-reassign': ['error', { ignorePropertyModificationsForRegex: ['state'] }], // "props": true,
     'jsx-a11y/label-has-associated-control': ['error', {}],
+    'no-unused-vars': 'off', // or "@typescript-eslint/no-unused-vars": "off",
+    'unused-imports/no-unused-imports': 'error',
+    'unused-imports/no-unused-vars': [
+      'warn',
+      {
+        vars: 'all', varsIgnorePattern: '^_', args: 'after-used', argsIgnorePattern: '^_',
+      },
+    ],
   },
   globals: {
     __IS_DEV__: true,
