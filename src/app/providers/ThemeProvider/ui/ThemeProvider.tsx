@@ -1,11 +1,12 @@
 import { FC, useMemo, useState } from 'react';
+import { THEME_LOCAL_STORAGE_KEY } from 'shared/const/localStorage';
 import {
-  LOCAL_STORAGE_THEME_KEY, Theme,
+  Theme,
   ThemeContext,
 } from '../lib/ThemeContext';
 
 const defaultTheme = localStorage
-  .getItem(LOCAL_STORAGE_THEME_KEY) as Theme
+  .getItem(THEME_LOCAL_STORAGE_KEY) as Theme
  || Theme.LIGHT;
 
 const ThemeProvider: FC = ({ children }) => {
