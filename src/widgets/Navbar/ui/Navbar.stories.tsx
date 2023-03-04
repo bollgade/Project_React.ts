@@ -1,5 +1,6 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { Theme } from 'app/providers/ThemeProvider';
+import { StoreDecorator } from 'shared/config/storybook/StoreDecorator';
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator';
 import { Navbar } from './Navbar';
 
@@ -13,9 +14,25 @@ export default {
 
 const Template: ComponentStory<typeof Navbar> = (args) => <Navbar {...args} />;
 
-export const Normal = Template.bind({});
-Normal.args = {};
+const elements: Record<string, any> = {
+  Primary: Template.bind({}),
+  Auth: Template.bind({}),
+};
+elements.Primary.decorators = [StoreDecorator({})];
+elements.Auth.decorators = [StoreDecorator({
+  user: { authData: {} },
+})];
 
-export const Dark = Template.bind({});
-Dark.args = {};
-Dark.decorators = [ThemeDecorator(Theme.DARK)];
+Object.keys(elements).forEach((key) => {
+  const mainElement = elements[key];
+  const mainDecorators = elements[key].decorators ?? [];
+  elements[`${key}Dark`] = { ...mainElement };
+  elements[`${key}Dark`].decorators = [...mainDecorators, ThemeDecorator(Theme.DARK)];
+});
+
+export const {
+  Primary,
+  PrimaryDark,
+  Auth,
+  AuthDark,
+} = elements;

@@ -1,5 +1,6 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { Theme } from 'app/providers/ThemeProvider';
+import { StoreDecorator } from 'shared/config/storybook/StoreDecorator';
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator';
 import { LoginForm } from './LoginForm';
 
@@ -13,9 +14,33 @@ export default {
 
 const Template: ComponentStory<typeof LoginForm> = (args) => <LoginForm {...args} />;
 
-export const Light = Template.bind({});
-Light.args = {};
+const elements: Record<string, any> = {
+  Primary: Template.bind({}),
+  withError: Template.bind({}),
+  Loading: Template.bind({}),
+};
+elements.Primary.decorators = [StoreDecorator({
+  loginForm: { username: '123', password: 'asd' },
+})];
 
-export const Dark = Template.bind({});
-Dark.args = {};
-Dark.decorators = [ThemeDecorator(Theme.DARK)];
+elements.withError.decorators = [StoreDecorator({
+  loginForm: { username: '123', password: 'asd', error: 'error' },
+})];
+
+elements.Loading.decorators = [StoreDecorator({
+  loginForm: { username: '123', password: 'asd', isLoading: true },
+})];
+
+Object.keys(elements).forEach((key) => {
+  elements[`${key}Dark`] = { ...elements[key] };
+  elements[`${key}Dark`].decorators = [...elements[key].decorators, ThemeDecorator(Theme.DARK)];
+});
+
+export const {
+  Primary,
+  PrimaryDark,
+  withError,
+  withErrorDark,
+  Loading,
+  LoadingDark,
+} = elements;
