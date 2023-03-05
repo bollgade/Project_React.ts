@@ -1,5 +1,5 @@
 import { getUserAuthData, userActions } from 'entities/User';
-import { loginActions, LoginModal } from 'features/AuthByUsername';
+import { LoginModal } from 'features/AuthByUsername';
 import { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
@@ -29,7 +29,6 @@ export const Navbar = ({ className }: NavbarProps) => {
 
   const onLogout = useCallback(() => {
     onCloseModal();
-    dispatch(loginActions.clearUserData());
     dispatch(userActions.logout());
   }, [dispatch, onCloseModal]);
 
