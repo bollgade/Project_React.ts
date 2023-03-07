@@ -14,6 +14,7 @@ interface OpenedModalProps {
   children?: ReactNode;
   isOpen?: boolean;
   onClose?: () => void;
+  closeModalState?: [boolean, React.Dispatch<React.SetStateAction<boolean>>];
 }
 
 const OpenedModal: FC<OpenedModalProps> = (props) => {
@@ -22,6 +23,7 @@ const OpenedModal: FC<OpenedModalProps> = (props) => {
     children,
     isOpen,
     onClose,
+    closeModalState: [closeModal = false, setCloseModal], // TODO: Find better solution (useImperativeHandle)
   } = props;
 
   const [isClosing, setIsClosing] = useState(false);
@@ -39,23 +41,26 @@ const OpenedModal: FC<OpenedModalProps> = (props) => {
     e.stopPropagation();
   }, []);
 
-  const onAnimationEnd = ((event: AnimationEvent<HTMLDivElement>) => {
+  const onAnimationEnd = useCallback(((event: AnimationEvent<HTMLDivElement>) => {
     if (event.animationName === cls.closeOverlay) {
       setIsClosing(false);
       onClose();
     }
-  });
+  }), [onClose]);
 
   useEffect(() => {
     if (isOpen) {
       window.addEventListener('keydown', onKeyDown);
       document.body.style.overflow = 'hidden';
+      if (closeModal) closeHandler();
     }
+
     return () => {
       window.removeEventListener('keydown', onKeyDown);
       document.body.style.overflow = 'auto';
+      setCloseModal(false);
     };
-  }, [isOpen, onKeyDown]);
+  }, [closeHandler, closeModal, isOpen, onKeyDown, setCloseModal]);
 
   const mods: Record<string, boolean> = {
     [cls.opened]: isOpen,
