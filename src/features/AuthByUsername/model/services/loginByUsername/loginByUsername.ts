@@ -17,7 +17,6 @@ export const loginByUsername = createAsyncThunk<User, LoginByUsernameProps, { re
         throw new Error();
       }
 
-      window.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' })); // TODO: edit modal to start closing from parent
       localStorage.setItem(USER_LOCAL_STORAGE_KEY, JSON.stringify(response.data)); // imitation of saving token
       thunkAPI.dispatch(userActions.setAuthData(response.data));
 

@@ -1,4 +1,6 @@
-import { FC, Suspense } from 'react';
+import {
+  FC, Suspense, useCallback, useState,
+} from 'react';
 import { Loader } from 'shared/ui/Loader/Loader';
 import { Modal } from 'shared/ui/Modal/Modal';
 import { LoginFormAsync } from '../LoginForm/LoginForm.async';
@@ -13,14 +15,17 @@ export const LoginModal: FC<LoginModalProps> = (props) => {
     isOpen,
     onClose,
   } = props;
+  const [closeModal, setCloseModal] = useState(false);
+  const onSuccess = useCallback(() => setCloseModal(true), []);
 
   return (
     <Modal
       isOpen={isOpen}
       onClose={onClose}
+      closeModalState={[closeModal, setCloseModal]}
     >
       <Suspense fallback={<Loader />}>
-        <LoginFormAsync />
+        <LoginFormAsync onSuccess={onSuccess} />
       </Suspense>
     </Modal>
   );

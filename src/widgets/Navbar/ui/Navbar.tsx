@@ -28,9 +28,8 @@ export const Navbar = ({ className }: NavbarProps) => {
   );
 
   const onLogout = useCallback(() => {
-    onCloseModal();
     dispatch(userActions.logout());
-  }, [dispatch, onCloseModal]);
+  }, [dispatch]);
 
   return (
     <div className={classNames(cls.navbar, {}, [className])}>
