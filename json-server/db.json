@@ -26,6 +26,13 @@
     }
   ],
   "profile": {
-    "name": "typicode"
+    "firstName": "Lev",
+    "lastName": "Ladikov",
+    "age": 22,
+    "currency": "RUB",
+    "country": "Russia",
+    "city": "Krasnodar",
+    "username": "bollgade",
+    "avatar": "https://img.hhcdn.ru/photo/650031888.jpeg?t=1678292533&h=tzxgPOYJejmfM_zGetYszg"
   }
 }
