@@ -23,8 +23,9 @@ const OpenedModal: FC<OpenedModalProps> = (props) => {
     children,
     isOpen,
     onClose,
-    closeModalState: [closeModal = false, setCloseModal], // TODO: Find better solution (useImperativeHandle)
+    closeModalState = [],
   } = props;
+  const [closeModal = false, setCloseModal] = closeModalState; // TODO: Find better solution (useImperativeHandle)
 
   const [isClosing, setIsClosing] = useState(false);
 
@@ -58,7 +59,7 @@ const OpenedModal: FC<OpenedModalProps> = (props) => {
     return () => {
       window.removeEventListener('keydown', onKeyDown);
       document.body.style.overflow = 'auto';
-      setCloseModal(false);
+      setCloseModal?.(false);
     };
   }, [closeHandler, closeModal, isOpen, onKeyDown, setCloseModal]);
 

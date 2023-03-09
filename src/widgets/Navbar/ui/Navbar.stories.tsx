@@ -1,7 +1,6 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import { Theme } from 'app/providers/ThemeProvider';
-import { StoreDecorator } from 'shared/config/storybook/StoreDecorator';
-import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator';
+import { StoreDecorator } from 'shared/config/storybook/decorators/StoreDecorator/StoreDecorator';
+import { combineThemes, fillStories, storiesMixer } from 'shared/config/storybook/decorators/ThemeDecorator/ThemeCombiner';
 import { Navbar } from './Navbar';
 
 export default {
@@ -14,20 +13,34 @@ export default {
 
 const Template: ComponentStory<typeof Navbar> = (args) => <Navbar {...args} />;
 
-const elements: Record<string, any> = {
-  Primary: Template.bind({}),
-  Auth: Template.bind({}),
-};
-elements.Primary.decorators = [StoreDecorator({})];
-elements.Auth.decorators = [StoreDecorator({
+const itemsNames = [
+  'Primary',
+  'Auth',
+] as const;
+
+const themesNames = [
+  'Dark',
+] as const;
+
+type storiesType = storiesMixer<
+  typeof itemsNames,
+  typeof themesNames,
+  typeof Template
+>
+
+const stories: storiesType = fillStories({
+  itemsNames,
+  Template,
+});
+
+stories.Primary.decorators = [StoreDecorator({})];
+stories.Auth.decorators = [StoreDecorator({
   user: { authData: {} },
 })];
 
-Object.keys(elements).forEach((key) => {
-  const mainElement = elements[key];
-  const mainDecorators = elements[key].decorators ?? [];
-  elements[`${key}Dark`] = { ...mainElement };
-  elements[`${key}Dark`].decorators = [...mainDecorators, ThemeDecorator(Theme.DARK)];
+combineThemes({
+  stories,
+  themesNames,
 });
 
 export const {
@@ -35,4 +48,4 @@ export const {
   PrimaryDark,
   Auth,
   AuthDark,
-} = elements;
+} = stories;

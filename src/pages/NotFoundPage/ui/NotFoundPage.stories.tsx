@@ -1,6 +1,5 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import { Theme } from 'app/providers/ThemeProvider';
-import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator';
+import { combineThemes, fillStories, storiesMixer } from 'shared/config/storybook/decorators/ThemeDecorator/ThemeCombiner';
 import { NotFoundPage } from './NotFoundPage';
 
 export default {
@@ -13,9 +12,33 @@ export default {
 
 const Template: ComponentStory<typeof NotFoundPage> = (args) => <NotFoundPage {...args} />;
 
-export const Normal = Template.bind({});
-Normal.args = {};
+const itemsNames = [
+  'Primary',
+] as const;
 
-export const Dark = Template.bind({});
-Dark.args = {};
-Dark.decorators = [ThemeDecorator(Theme.DARK)];
+const themesNames = [
+  'Dark',
+] as const;
+
+type storiesType = storiesMixer<
+  typeof itemsNames,
+  typeof themesNames,
+  typeof Template
+>
+
+const stories: storiesType = fillStories({
+  itemsNames,
+  Template,
+});
+
+stories.Primary.args = {};
+
+combineThemes({
+  stories,
+  themesNames,
+});
+
+export const {
+  Primary,
+  PrimaryDark,
+} = stories;

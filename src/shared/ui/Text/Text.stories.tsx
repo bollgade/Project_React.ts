@@ -1,6 +1,5 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import { Theme } from 'app/providers/ThemeProvider';
-import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator';
+import { combineThemes, fillStories, storiesMixer } from 'shared/config/storybook/decorators/ThemeDecorator/ThemeCombiner';
 import { Text, TextTheme } from './Text';
 
 export default {
@@ -13,35 +12,50 @@ export default {
 
 const Template: ComponentStory<typeof Text> = (args) => <Text {...args} />;
 
-const elements: Record<string, any> = {
-  Primary: Template.bind({}),
-  onlyTitle: Template.bind({}),
-  onlyText: Template.bind({}),
-  Error: Template.bind({}),
-};
+const itemsNames = [
+  'Primary',
+  'onlyTitle',
+  'onlyText',
+  'Error',
+] as const;
 
-elements.Primary.args = {
+const themesNames = [
+  'Dark',
+] as const;
+
+type storiesType = storiesMixer<
+  typeof itemsNames,
+  typeof themesNames,
+  typeof Template
+>
+
+const stories: storiesType = fillStories({
+  itemsNames,
+  Template,
+});
+
+stories.Primary.args = {
   title: 'Title lorem ipsum',
   text: 'I have no idea what to write else',
 };
 
-elements.onlyTitle.args = {
+stories.onlyTitle.args = {
   title: 'Title lorem ipsum',
 };
 
-elements.onlyText.args = {
+stories.onlyText.args = {
   text: 'I have no idea what to write else',
 };
 
-elements.Error.args = {
+stories.Error.args = {
   title: 'Title lorem ipsum',
   text: 'I have no idea what to write else',
   theme: TextTheme.ERROR,
 };
 
-Object.keys(elements).forEach((key) => {
-  elements[`${key}Dark`] = { ...elements[key] };
-  elements[`${key}Dark`].decorators = [ThemeDecorator(Theme.DARK)];
+combineThemes({
+  stories,
+  themesNames,
 });
 
 export const {
@@ -53,4 +67,4 @@ export const {
   onlyTextDark,
   Error,
   ErrorDark,
-} = elements;
+} = stories;

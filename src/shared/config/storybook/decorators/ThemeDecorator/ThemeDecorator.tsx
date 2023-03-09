@@ -16,3 +16,5 @@ export const ThemeDecorator = (theme: Theme) => (StoryComponent: Story) => {
     </div>
   );
 };
+
+export { Theme as ThemeDecor };

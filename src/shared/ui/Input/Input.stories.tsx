@@ -1,6 +1,5 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import { Theme } from 'app/providers/ThemeProvider';
-import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator';
+import { combineThemes, fillStories, storiesMixer } from 'shared/config/storybook/decorators/ThemeDecorator/ThemeCombiner';
 import { Input } from './Input';
 
 export default {
@@ -16,20 +15,39 @@ export default {
 
 const Template: ComponentStory<typeof Input> = (args) => <Input {...args} />;
 
-export const Light = Template.bind({});
-Light.args = {};
+const itemsNames = [
+  'Primary',
+  'WithValue',
+] as const;
 
-export const LightWithValue = Template.bind({});
-LightWithValue.args = {
-  value: 'My UserName',
+const themesNames = [
+  'Dark',
+] as const;
+
+type storiesType = storiesMixer<
+  typeof itemsNames,
+  typeof themesNames,
+  typeof Template
+>
+
+const stories: storiesType = fillStories({
+  itemsNames,
+  Template,
+});
+
+stories.Primary.args = {};
+stories.WithValue.args = {
+  value: 'Bollgade',
 };
 
-export const Dark = Template.bind({});
-Dark.args = {};
-Dark.decorators = [ThemeDecorator(Theme.DARK)];
+combineThemes({
+  stories,
+  themesNames,
+});
 
-export const DarkWithValue = Template.bind({});
-DarkWithValue.args = {
-  value: 'My UserName',
-};
-DarkWithValue.decorators = [ThemeDecorator(Theme.DARK)];
+export const {
+  Primary,
+  PrimaryDark,
+  WithValue,
+  WithValueDark,
+} = stories;
