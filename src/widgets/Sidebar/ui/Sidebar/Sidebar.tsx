@@ -41,7 +41,7 @@ export const Sidebar: FC<SidebarProps> = (props) => {
       </Button>
       <div className={classNames(cls.items)}>
         {routeItems.filter(({ link }) => Boolean(link)).map((item) => (
-          <SidebarItem<typeof cls>
+          <SidebarItem
             key={item.path}
             item={item}
             cls={cls}
