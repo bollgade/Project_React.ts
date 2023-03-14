@@ -11,7 +11,7 @@ interface expectedCls {
 
 interface SidebarItemProps {
   cls?: expectedCls;
-  item?: RouteItem,
+  item: RouteItem,
 }
 
 export const SidebarItem = memo((props: SidebarItemProps) => {
@@ -22,18 +22,20 @@ export const SidebarItem = memo((props: SidebarItemProps) => {
   const { t } = useTranslation();
 
   const {
-    path,
-    link: { Icon, text },
+    path = '',
+    link = { Icon: undefined, text: '' },
   } = item;
+
+  const { Icon, text } = link;
 
   return (
     <AppLink
       theme={AppLinkTheme.PRIMARY}
       to={path}
-      className={cls.item}
+      className={cls?.item}
     >
-      <Icon className={cls.icon} />
-      <span className={cls.itemText}>{t(text)}</span>
+      {Icon && <Icon className={cls?.icon} />}
+      <span className={cls?.itemText}>{t(text)}</span>
     </AppLink>
   );
 });

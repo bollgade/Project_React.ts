@@ -5,7 +5,7 @@ import React, {
   useCallback,
   useEffect, useState,
 } from 'react';
-import { classNames } from 'shared/lib/classNames/classNames';
+import { classNames, Mods } from 'shared/lib/classNames/classNames';
 import { Portal } from 'shared/ui/Portal/Portal';
 import cls from './Modal.module.scss';
 
@@ -45,7 +45,7 @@ const OpenedModal: FC<OpenedModalProps> = (props) => {
   const onAnimationEnd = useCallback(((event: AnimationEvent<HTMLDivElement>) => {
     if (event.animationName === cls.closeOverlay) {
       setIsClosing(false);
-      onClose();
+      onClose?.();
     }
   }), [onClose]);
 
@@ -63,7 +63,7 @@ const OpenedModal: FC<OpenedModalProps> = (props) => {
     };
   }, [closeHandler, closeModal, isOpen, onKeyDown, setCloseModal]);
 
-  const mods: Record<string, boolean> = {
+  const mods: Mods = {
     [cls.opened]: isOpen,
     [cls.closing]: isClosing,
   };
