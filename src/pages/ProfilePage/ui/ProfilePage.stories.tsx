@@ -1,4 +1,5 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { StoreDecorator } from 'shared/config/storybook/decorators/StoreDecorator/StoreDecorator';
 import { combineThemes, fillStories, storiesMixer } from 'shared/config/storybook/decorators/ThemeDecorator/ThemeCombiner';
 import ProfilePage from './ProfilePage';
 
@@ -28,6 +29,8 @@ const stories: storiesType = fillStories({
   itemsNames,
   Template,
 });
+
+stories.Primary.decorators = [StoreDecorator({})];
 
 combineThemes({
   stories,

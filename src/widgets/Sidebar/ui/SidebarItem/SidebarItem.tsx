@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { RouteItem } from 'shared/config/routeConfig/routeConfig';
 import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink';
@@ -8,12 +9,12 @@ interface expectedCls {
   itemText: string,
 }
 
-interface SidebarItemProps<clsType> {
-  cls?: clsType;
+interface SidebarItemProps {
+  cls?: expectedCls;
   item?: RouteItem,
 }
 
-export function SidebarItem<clsType extends expectedCls>(props: SidebarItemProps<clsType>) {
+export const SidebarItem = memo((props: SidebarItemProps) => {
   const {
     cls,
     item,
@@ -35,4 +36,4 @@ export function SidebarItem<clsType extends expectedCls>(props: SidebarItemProps
       <span className={cls.itemText}>{t(text)}</span>
     </AppLink>
   );
-}
+});

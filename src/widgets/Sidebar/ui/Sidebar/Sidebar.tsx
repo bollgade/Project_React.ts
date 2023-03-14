@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { memo, useState } from 'react';
 import { routeItems } from 'shared/config/routeConfig/routeConfig';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Button, ButtonSize, ButtonTheme } from 'shared/ui/Button/Button';
@@ -11,7 +11,7 @@ interface SidebarProps {
   className?: string;
 }
 
-export const Sidebar: FC<SidebarProps> = (props) => {
+export const Sidebar = memo((props: SidebarProps) => {
   const { className } = props;
 
   const [collapsed, setCollapsed] = useState(false);
@@ -41,7 +41,7 @@ export const Sidebar: FC<SidebarProps> = (props) => {
       </Button>
       <div className={classNames(cls.items)}>
         {routeItems.filter(({ link }) => Boolean(link)).map((item) => (
-          <SidebarItem<typeof cls>
+          <SidebarItem
             key={item.path}
             item={item}
             cls={cls}
@@ -57,4 +57,4 @@ export const Sidebar: FC<SidebarProps> = (props) => {
       </div>
     </div>
   );
-};
+});
